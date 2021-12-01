@@ -1,0 +1,29 @@
+.task-row{
+    border: 1px solid silver;
+    border-radius: 0.25rem;
+    margin: 10px;
+    padding: 10px;
+}
+body{
+    background-color: #fafafa;
+}
+.created-at{
+    font-size: 0.7rem;
+    color: gray;
+}
+.task-name{
+    font-weight: bold;
+}
+.completed{
+    background-color: #eeeeee;
+}
+.not-completed{
+    background-color: white;
+}
+#delete-task-text{
+    background-color: #fe6993;
+    color: #fe6993;
+    border-radius: 3px;
+    padding: 0.2em;
+    line-height: 2em;
+}

@@ -1,0 +1,45 @@
+{% extends 'hw4/base.html' %}
+
+{% block content %}
+    <form action="{% url 'add' %}" method="post">
+        {% csrf_token %}
+
+        <div class="input-group mb-3">
+            {{ form.task }}
+            <button type="submit" value="Add" class="input-group-text btn btn-primary" id="basic-addon2">ADD</button>
+        </div>
+    </form>
+
+    <div class="row">
+        <div class="col">
+            {% for task in tasks %}
+                {% if not task.completed %}
+                    <div class="d-flex row m-3 p-2 m-1 border border-1 rounded justify-content-between">
+                        <div class="col-sm-6 me-auto p-2">
+                            <h5 class="task-name">{{ task.task }}</h5>
+                            <p class="created-at">Created at: {{ task.created_at }}</p>
+                        </div>
+                        <div class="d-flex justify-content-end col-sm-6 p-2 ">
+                            <a class="btn btn-success m-1" href="{% url 'completed' task.id %}">Completed</a>
+                            <a href="{% url 'update' task.id %}" class="btn btn-primary m-1">Update</a>
+                            <a href="{% url 'delete' task.id %}" class="btn btn-danger m-1">Delete</a>
+                        </div>
+                    </div>
+                {% else %}
+                    <div class="completed d-flex row m-3 p-2 bd-highlight m-1 bg-light border border-1 rounded justify-content-between">
+                        <div class="col-sm-6 me-auto p-2 text-secondary">
+                            <h5 class="task-name"><s>{{ task.task }}</s></h5>
+                            <p class="created-at"><s>Created at: {{ task.created_at }}</s></p>
+                        </div>
+                        <div class="d-flex justify-content-end col-sm-6 p-2">
+                            <a href="{% url 'update' task.id %}" class="btn btn-primary m-1">Update</a>
+                            <a href="{% url 'delete' task.id %}" class="btn btn-danger m-1">Delete</a>
+                        </div>
+                    </div>
+                {% endif %}
+
+            {% endfor %}
+        </div>
+    </div>
+
+{% endblock %}
